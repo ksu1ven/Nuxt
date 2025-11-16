@@ -1,0 +1,69 @@
+@tailwind utilities;
+
+#__nuxt {
+  @apply flex min-h-screen flex-col bg-purple-600 text-white;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+$container-map: (
+  320px: 12px,
+  475px: 16px,
+  768px: 20px,
+  800px: 24px,
+  1366px: 32px,
+  1450px: 36px,
+  1700px: 40px,
+  1920px: 48px,
+);
+
+@mixin container-padding($map) {
+  @each $width, $extra in $map {
+    @media (min-width: $width) {
+      padding-inline: #{$extra};
+    }
+  }
+}
+
+@mixin container-by-padding($map) {
+  @each $width, $extra in $map {
+    @media (min-width: $width) {
+      padding-inline: calc((100vw - #{$width}) / 2 + #{$extra});
+    }
+  }
+}
+
+.container {
+  margin-inline: auto;
+  @include container-padding($container-map);
+}
+
+@layer utilities {
+  .full-bleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .full-bleed-reset {
+    width: initial;
+    margin-left: initial;
+    transform: initial;
+  }
+
+  .container-by-padding {
+    @include container-by-padding($container-map);
+  }
+
+  .container-by-padding-reset {
+    padding-inline: initial;
+  }
+}
