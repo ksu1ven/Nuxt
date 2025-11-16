@@ -42,7 +42,7 @@ const total = computed(() => data.value?.total ?? 0);
     <h1
       class="lg:text-4xl mb-6 text-3xl font-bold peer-[.loading]/status:bg-pink-400"
     >
-      🎬 Movie Catalog
+      🎬 Movie Catalog myay
     </h1>
 
     <MoviesMovieFilters v-model="filters" />
