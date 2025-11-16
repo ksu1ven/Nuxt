@@ -15,12 +15,12 @@ export default defineNuxtConfig({
     "/": {
       prerender: true,
     },
-    "/movies": {
-      swr: true,
-    },
-    "/movies/**": {
-      swr: false,
-    },
+    // "/movies": {
+    //   swr: true,
+    // },
+    // "/movies/**": {
+    //   swr: false,
+    // },
     "/old/**": {
       redirect: {
         to: "/",

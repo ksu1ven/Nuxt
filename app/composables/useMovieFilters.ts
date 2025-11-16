@@ -1,5 +1,4 @@
 import type { IMovieFilters } from "~/types/movie";
-import { useRouter, useRoute } from "vue-router";
 
 export const useMovieFilters = () => {
 	const router = useRouter();

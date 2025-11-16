@@ -18,7 +18,7 @@ const {
 } = await useFetch<IMovieDetails>(`/api/film/${id}`);
 
 if (!movie.value) {
-	throw createError({ statusCode: 404, statusMessage: "Page Not Found" });
+	throw createError({ status: 404, message: "Page Not Found" });
 }
 
 useHead({
