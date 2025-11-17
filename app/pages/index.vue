@@ -57,14 +57,18 @@
       <div class="bg-purple-50 p-4">02</div>
       <div class="bg-purple-50 p-4">03</div>
     </div>
+
+    <pre class="text-xl font-semibold">{{ data }}</pre>
   </section>
 </template>
 
 <script setup lang="ts">
-// const router = useRouter();
+
+const {data}=useFetch('https://api.tvoiexpert.online/api/v1/catalog/directions')
+
 
 const navigate = () => {
-  // router.push("/movies");
+
   navigateTo("/movies");
   throw Error("xdfghj");
 };

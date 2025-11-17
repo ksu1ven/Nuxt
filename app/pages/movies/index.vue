@@ -22,11 +22,11 @@ const { data, status } = await useFetch<IMovieListResponse>("/api/films", {
   // 		})),
   // 	};
   // },
-  // getCachedData(key) {
-  //   const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-  //   if (!data) return;
-  //   return data;
-  // },
+  getCachedData(key) {
+    const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    if (!data) return;
+    return data;
+  },
 });
 
 const movieModalOpen = ref(false);
