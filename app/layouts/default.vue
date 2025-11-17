@@ -8,6 +8,9 @@
       <NuxtLink to="/movies" class="text-white transition hover:text-blue-400">
         Каталог
       </NuxtLink>
+      <NuxtLink to="/profile" class="text-white transition hover:text-blue-400">
+        Профиль
+      </NuxtLink>
     </nav>
   </header>
 

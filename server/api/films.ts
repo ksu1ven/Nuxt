@@ -1,7 +1,15 @@
-import { apiFetch } from "~/utils/api";
-
 export default defineEventHandler(async (event) => {
-  const r = parseCookies(event);
   const query = getQuery(event);
-  return await apiFetch("/films", { query });
+  const config = useRuntimeConfig(event);
+  const { token } = parseCookies(event);
+  console.log(token);
+
+  const response = await $fetch(`${config.public.kinopoiskBaseUrl}/films`, {
+    headers: {
+      "X-API-KEY": config.kinopoiskApiKey,
+      Authorization: `Bearer ${token}`,
+    },
+    query,
+  });
+  return response;
 });

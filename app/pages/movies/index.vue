@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const nuxtApp = useNuxtApp();
+const router = useRouter();
 
 definePageMeta({
   middleware: "auth",
@@ -8,26 +9,50 @@ definePageMeta({
 
 const { filters } = useMovieFilters();
 
-const { data, status } = await useFetch<IMovieListResponse>("/api/films", {
-  query: filters,
-  credentials: "include",
-  // transform(input) {
-  // 	return {
-  // 		...input,
-  // 		items: input.items.map((el) => ({
-  // 			nameRu: el.nameRu,
-  // 			nameEn: el.nameEn,
-  // 			nameOriginal: el.nameOriginal,
-  // 			year: el.year,
-  // 		})),
-  // 	};
-  // },
-  getCachedData(key) {
-    const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-    if (!data) return;
-    return data;
+// const { data, status } = await useFetch<IMovieListResponse>("/api/films", {
+//   query: filters,
+//   credentials: "include",
+//   // transform(input) {
+//   // 	return {
+//   // 		...input,
+//   // 		items: input.items.map((el) => ({
+//   // 			nameRu: el.nameRu,
+//   // 			nameEn: el.nameEn,
+//   // 			nameOriginal: el.nameOriginal,
+//   // 			year: el.year,
+//   // 		})),
+//   // 	};
+//   // },
+//   getCachedData(key) {
+//     const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+//     if (!data) return;
+//     return data;
+//   },
+// });
+
+const { data, error, status } = await useFetch<IMovieListResponse>(
+  "/api/films",
+  {
+    query: filters,
+    // transform(input) {
+    // 	return {
+    // 		...input,
+    // 		items: input.items.map((el) => ({
+    // 			nameRu: el.nameRu,
+    // 			nameEn: el.nameEn,
+    // 			nameOriginal: el.nameOriginal,
+    // 			year: el.year,
+    // 		})),
+    // 	};
+    // },
+    getCachedData(key) {
+      const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+      if (!data) return;
+      return data;
+    },
+    lazy: true,
   },
-});
+);
 
 const movieModalOpen = ref(false);
 
@@ -38,7 +63,7 @@ const total = computed(() => data.value?.total ?? 0);
 
 <template>
   <div class="p-8">
-    <pre class="peer/status loading">{{ status }}</pre>
+    <pre>{{ error }}</pre>
     <h1
       class="lg:text-4xl mb-6 text-3xl font-bold peer-[.loading]/status:bg-pink-400"
     >
