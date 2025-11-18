@@ -9,27 +9,6 @@ definePageMeta({
 
 const { filters } = useMovieFilters();
 
-// const { data, status } = await useFetch<IMovieListResponse>("/api/films", {
-//   query: filters,
-//   credentials: "include",
-//   // transform(input) {
-//   // 	return {
-//   // 		...input,
-//   // 		items: input.items.map((el) => ({
-//   // 			nameRu: el.nameRu,
-//   // 			nameEn: el.nameEn,
-//   // 			nameOriginal: el.nameOriginal,
-//   // 			year: el.year,
-//   // 		})),
-//   // 	};
-//   // },
-//   getCachedData(key) {
-//     const data = nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-//     if (!data) return;
-//     return data;
-//   },
-// });
-
 const { data, error, status } = await useFetch<IMovieListResponse>(
   "/api/films",
   {
@@ -53,6 +32,26 @@ const { data, error, status } = await useFetch<IMovieListResponse>(
     lazy: true,
   },
 );
+
+watch(
+  error,
+  () => {
+    if (error.value?.statusCode === 401) {
+      navigateTo("/login");
+    }
+  },
+  { immediate: true },
+);
+
+// const { data, error, status } = await useAsyncData<IMovieListResponse>(
+//   "films",
+//   async () => {
+//     return await $customFetch("/api/films", { query: filters.value });
+//   },
+//   { lazy: true, watch: [filters] },
+// );
+
+// console.log(useCookie("token"));
 
 const movieModalOpen = ref(false);
 

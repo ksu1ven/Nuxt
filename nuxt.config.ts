@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.scss"],
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "nuxt-auth-utils"],
   runtimeConfig: {
     kinopoiskApiKey: "ba423643-2850-4185-8267-519b193bd018",
 

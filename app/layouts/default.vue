@@ -11,6 +11,9 @@
       <NuxtLink to="/profile" class="text-white transition hover:text-blue-400">
         Профиль
       </NuxtLink>
+      <NuxtLink to="/login" class="text-white transition hover:text-blue-400">
+        Логин
+      </NuxtLink>
     </nav>
   </header>
 
