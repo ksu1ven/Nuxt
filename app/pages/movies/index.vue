@@ -4,7 +4,7 @@ const router = useRouter();
 
 definePageMeta({
   middleware: "auth",
-  alias: ["/home"],
+  alias: ["/films"],
 });
 
 const { filters } = useMovieFilters();

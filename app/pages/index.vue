@@ -61,6 +61,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ alias: ["/home"] });
+
 const navigate = () => {
   navigateTo("/movies");
   throw Error("xdfghj");
